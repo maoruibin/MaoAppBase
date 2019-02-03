@@ -31,8 +31,11 @@
 
 ### 数据存储
 本地SP
-*[tray](https://github.com/grandcentrix/tray)
+
+* [tray](https://github.com/grandcentrix/tray)
+
 本地数据库
+
 *[LitePal](https://github.com/LitePalFramework/LitePal)
 
 ### 日志框架
