@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/ll_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="120dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:gravity="center">
+
+    <TextView
+            android:id="@+id/tv_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="还没有什么密码数据"/>
+
+    <TextView
+            android:id="@+id/tv_point_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#1331c6"
+            tools:text="添加密码"/>
+</LinearLayout>

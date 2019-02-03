@@ -1,0 +1,80 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    defaultConfig {
+        applicationId "com.xuan.name.maoappbase"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    signingConfigs {
+        //指定名叫release的一个签名对象，下面会动态根据配置文件设置属性
+        releaseConfig
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+        }
+        release {
+            if (signingConfigs.releaseConfig != null) {
+                signingConfig signingConfigs.releaseConfig
+            }
+            //设置是否混淆
+            minifyEnabled true
+            //设置压缩对齐
+            zipAlignEnabled true
+            //移除无用的资源文件
+            shrinkResources true
+            //设置混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    compileOptions {
+        encoding "UTF-8"
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+def Properties props = new Properties()
+def propFile = file('../local.properties')
+if (propFile.exists()) {
+    props.load(new FileInputStream(propFile))
+    if (props != null &&
+            props.containsKey('SIGN_FILE') && props.containsKey('SIGN_KEYSTORE_PASS') &&
+            props.containsKey('SIGN_KEYSTORE_ALIAS') && props.containsKey('SIGN_KEYSTORE_ALIAS_PASS')) {
+        println 'release build signing'
+        android.signingConfigs.releaseConfig.storeFile = file(props['SIGN_FILE'])
+        android.signingConfigs.releaseConfig.storePassword = props['SIGN_KEYSTORE_PASS']
+        android.signingConfigs.releaseConfig.keyAlias = props['SIGN_KEYSTORE_ALIAS']
+        android.signingConfigs.releaseConfig.keyPassword = props['SIGN_KEYSTORE_ALIAS_PASS']
+    } else {
+        println 'release build not found signing properties'
+        android.buildTypes.release.signingConfig = null
+    }
+} else {
+    println 'release build not found signing file'
+    android.buildTypes.release.signingConfig = null
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':base')
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:title="设置=====">
+
+    <Preference
+            android:key="test3"
+            android:title="测试3"
+            android:summary="被加密数据被解密后导出"/>
+
+    <PreferenceCategory android:title="测试">
+        <Preference
+                android:key="test1"
+                android:title="测试1"
+                android:summary="被加密数据被解密后导出"/>
+        <Preference
+                android:key="test2"
+                android:title="测试2"
+                android:summary="导入后数据将被加密存储"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:title="测试">
+
+        <CheckBoxPreference
+                android:key="checkbox_preference"
+                android:title="测试 CheckBox"
+                android:summary="选中会怎样" />
+
+        <SwitchPreference
+                android:key="switch_preference"
+                android:title="Switch preference"
+                android:summary="This is a switch" />
+
+        <DropDownPreference
+                android:key="dropdown_preference"
+                android:title="DropDown demo"
+                android:summary="DropDown demo"
+                android:entries="@array/entries_list_preference"
+                android:entryValues="@array/entries_list_preference" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

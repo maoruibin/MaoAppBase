@@ -1,0 +1,70 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.maoruibin'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            //设置是否混淆
+            minifyEnabled true
+            //设置压缩对齐
+            zipAlignEnabled true
+            //设置混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
+    api "com.android.support:appcompat-v7:$rootProject.supportVersion"
+    api "com.android.support:preference-v7:$rootProject.supportVersion"
+
+    api "com.squareup.okhttp3:okhttp:3.12.1"
+    api "com.zhy:okhttputils:2.6.2"
+    api 'com.google.code.gson:gson:2.8.5'
+
+    api 'com.orhanobut:logger:2.2.0'
+
+    api 'com.geek.thread:thread-pool:1.0.1'
+
+    api 'org.litepal.android:kotlin:3.0.0'
+
+    api ("com.github.anzewei:parallaxbacklayout:1.1.9"){
+        exclude group: "com.android.support"
+    }
+
+    api 'com.yanzhenjie:permission:2.0.0-rc12'
+
+//    api 'com.facebook.stetho:stetho:1.5.0'
+//    api 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+
+    api 'com.github.medyo:android-about-page:1.2.5'
+
+    api 'net.grandcentrix.tray:tray:0.12.0'
+
+    api "com.android.support.constraint:constraint-layout:1.1.3"
+
+    api ("cz.kinst.jakub:android-stateful-layout-base:2.0.7"){
+        exclude group: "com.android.support"
+    }
+
+    api 'org.greenrobot:eventbus:3.1.1'
+}
+repositories {
+    mavenCentral()
+}
