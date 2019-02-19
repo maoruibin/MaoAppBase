@@ -77,4 +77,5 @@ if (propFile.exists()) {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':base')
+//    implementation 'com.github.maoruibin:MaoAppBase:0.0.1'
 }

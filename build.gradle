@@ -38,6 +38,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 
     tasks.withType(Javadoc) {
@@ -47,6 +48,7 @@ allprojects {
             links "http://docs.oracle.com/javase/7/docs/api"
         }
     }
+
 }
 
 task clean(type: Delete) {
